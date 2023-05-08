@@ -1,0 +1,37 @@
+{
+  "name": "pigeon-back-end",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": "^18.14.2",
+    "npm": "^9.5.0"
+  },
+  "scripts": {
+    "prebuild": "rimraf build/",
+    "build": "npx tsc",
+    "prestart": "npm run build",
+    "start": "node build/index.js",
+    "predev": "npm run build",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q build/index.js\"",
+    "lint": "eslint --max-warnings=0 .",
+    "lint-fix": "eslint --max-warnings=0 . --fix",
+    "prettier": "prettier --check .",
+    "prettier-fix": "prettier --write ."
+  },
+  "dependencies": {
+    "@types/express": "^4.17.17",
+    "express": "^4.18.2",
+    "rimraf": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "concurrently": "^8.0.1",
+    "eslint": "^8.40.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4"
+  }
+}
