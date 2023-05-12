@@ -5,8 +5,8 @@ on:
       - "main"
   pull_request:
 jobs:
-  build-backend:
-    name: Build Backend
+  backend-build:
+    name: Backend - Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -17,9 +17,9 @@ jobs:
           npm run build
         working-directory: ./pigeon-backend
   backend-linting:
-    name: Backend Linting
+    name: Backend - Formatting and Linting
     runs-on: ubuntu-latest
-    needs: build-backend
+    needs: backend-build
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -29,8 +29,8 @@ jobs:
           npm run lint
           npm run prettier
         working-directory: ./pigeon-backend
-  build-frontend:
-    name: Build Frontend
+  frontend-build:
+    name: Frontend - Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -41,9 +41,9 @@ jobs:
           npm run build
         working-directory: ./pigeon-frontend
   frontend-linting:
-    name: Frontend Linting
+    name: Frontend - Formatting and Linting
     runs-on: ubuntu-latest
-    needs: build-frontend
+    needs: frontend-build
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
