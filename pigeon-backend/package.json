@@ -1,5 +1,5 @@
 {
-  "name": "pigeon-back-end",
+  "name": "pigeon-backend",
   "version": "1.0.0",
   "main": "index.js",
   "license": "Apache-2.0",
@@ -30,6 +30,7 @@
     "@typescript-eslint/parser": "^5.59.2",
     "concurrently": "^8.0.1",
     "eslint": "^8.40.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
     "typescript": "^5.0.4"
