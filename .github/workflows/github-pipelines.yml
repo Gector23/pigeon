@@ -2,7 +2,7 @@ name: github-pipelines
 on:
   push:
     branches:
-      - 'main'
+      - "main"
   pull_request:
 jobs:
   build-backend:
@@ -14,5 +14,14 @@ jobs:
           npm ci
           npm run build
         working-directory: ./pigeon-backend
-
-
+  backend-linting:
+    name: Backend Linting
+    runs-on: ubuntu-latest
+    needs: build-backend
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          npm ci
+          npm run lint
+          npm run prettier
+        working-directory: ./pigeon-backend
