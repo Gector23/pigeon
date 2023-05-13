@@ -1,0 +1,67 @@
+name: github-pipelines
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+jobs:
+  backend-build:
+    name: Backend - Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Run Build
+        run: |
+          npm ci
+          npm run build
+        working-directory: ./pigeon-backend
+  backend-linting:
+    name: Backend - Formatting and Linting
+    runs-on: ubuntu-latest
+    needs: backend-build
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Run Lint Check
+        run: |
+          npm ci
+          npm run lint
+          npm run prettier
+        working-directory: ./pigeon-backend
+  frontend-build:
+    name: Frontend - Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Run Build
+        run: |
+          npm ci
+          npm run build
+        working-directory: ./pigeon-frontend
+  frontend-type-checking:
+    name: Frontend - Type Checking
+    runs-on: ubuntu-latest
+    needs: frontend-build
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Run Type Check
+        run: |
+          npm ci
+          npm run tsc-no-emit
+        working-directory: ./pigeon-frontend
+  frontend-linting:
+    name: Frontend - Formatting and Linting
+    runs-on: ubuntu-latest
+    needs: frontend-build
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Run Lint Check
+        run: |
+          npm ci
+          npm run lint
+          npm run prettier
+        working-directory: ./pigeon-frontend

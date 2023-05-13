@@ -10,7 +10,8 @@
     "lint": "eslint --max-warnings=0 .",
     "lint-fix": "eslint --max-warnings=0 . --fix",
     "prettier": "prettier --check .",
-    "prettier-fix": "prettier --write ."
+    "prettier-fix": "prettier --write .",
+    "tsc-no-emit": "tsc --project tsconfig.json --noEmit"
   },
   "eslintConfig": {
     "extends": [
