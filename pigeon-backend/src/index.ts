@@ -1,10 +1,10 @@
+import "dotenv/config";
 import express from "express";
+import config from "./config";
 
 const app = express();
 
-const port = 8080;
-
-app.listen(port, () => {
+app.listen(config.PORT, () => {
   // eslint-disable-next-line no-console
-  console.log(`server started on port ${port}`);
+  console.log(`server started on port ${config.PORT}`);
 });
