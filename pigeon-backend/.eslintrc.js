@@ -28,5 +28,9 @@ module.exports = {
       },
     ],
     "implicit-arrow-linebreak": "off",
+    "max-len": "off",
+    "object-curly-newline": "off",
+    "no-underscore-dangle": "off",
+    "consistent-return": "off",
   },
 };
