@@ -10,23 +10,19 @@ interface SignInBody {
 }
 
 const signIn = async (req: Request<unknown, unknown, SignInBody, unknown>, res: Response) => {
-  try {
-    const { email, password } = req.body;
-    const userAgentHeader = req.headers["user-agent"];
+  const { email, password } = req.body;
+  const userAgentHeader = req.headers["user-agent"];
 
-    const tokens = await authService.signIn(email, password, userAgentHeader);
+  const tokens = await authService.signIn(email, password, userAgentHeader);
 
-    res.cookie(COOKIE_NAMES.ACCESS_TOKEN, tokens.accessToken, { maxAge: config.ACCESS_TOKEN_MAX_AGE, httpOnly: true });
-    res.cookie(COOKIE_NAMES.REFRESH_TOKEN, tokens.refreshToken, {
-      maxAge: config.REFRESH_TOKEN_MAX_AGE,
-      httpOnly: true,
-      path: "api/auth",
-    });
+  res.cookie(COOKIE_NAMES.ACCESS_TOKEN, tokens.accessToken, { maxAge: config.ACCESS_TOKEN_MAX_AGE, httpOnly: true });
+  res.cookie(COOKIE_NAMES.REFRESH_TOKEN, tokens.refreshToken, {
+    maxAge: config.REFRESH_TOKEN_MAX_AGE,
+    httpOnly: true,
+    path: "api/auth",
+  });
 
-    return res.sendStatus(StatusCodes.OK);
-  } catch (error) {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error);
-  }
+  return res.sendStatus(StatusCodes.OK);
 };
 
 interface SignUpBody {
@@ -35,50 +31,38 @@ interface SignUpBody {
 }
 
 const signUp = async (req: Request<unknown, unknown, SignUpBody, unknown>, res: Response) => {
-  try {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    await authService.signUp(email, password);
+  await authService.signUp(email, password);
 
-    return res.sendStatus(StatusCodes.OK);
-  } catch (error) {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error);
-  }
+  return res.sendStatus(StatusCodes.OK);
 };
 
 const signOut = async (req: Request, res: Response) => {
-  try {
-    const { userData } = req;
+  const { userData } = req;
 
-    await authService.signOut(userData.sessionId);
+  await authService.signOut(userData.sessionId);
 
-    res.clearCookie(COOKIE_NAMES.ACCESS_TOKEN);
-    res.clearCookie(COOKIE_NAMES.REFRESH_TOKEN, { path: "api/auth" });
+  res.clearCookie(COOKIE_NAMES.ACCESS_TOKEN);
+  res.clearCookie(COOKIE_NAMES.REFRESH_TOKEN, { path: "api/auth" });
 
-    return res.sendStatus(StatusCodes.OK);
-  } catch (error) {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error);
-  }
+  return res.sendStatus(StatusCodes.OK);
 };
 
 const refresh = async (req: Request, res: Response) => {
-  try {
-    const { refreshToken } = req.cookies as Cookie;
-    const userAgentHeader = req.headers["user-agent"];
+  const { refreshToken } = req.cookies as Cookie;
+  const userAgentHeader = req.headers["user-agent"];
 
-    const tokens = await authService.refresh(refreshToken, userAgentHeader);
+  const tokens = await authService.refresh(refreshToken, userAgentHeader);
 
-    res.cookie(COOKIE_NAMES.ACCESS_TOKEN, tokens.accessToken, { maxAge: config.ACCESS_TOKEN_MAX_AGE, httpOnly: true });
-    res.cookie(COOKIE_NAMES.REFRESH_TOKEN, tokens.refreshToken, {
-      maxAge: config.REFRESH_TOKEN_MAX_AGE,
-      httpOnly: true,
-      path: "api/auth",
-    });
+  res.cookie(COOKIE_NAMES.ACCESS_TOKEN, tokens.accessToken, { maxAge: config.ACCESS_TOKEN_MAX_AGE, httpOnly: true });
+  res.cookie(COOKIE_NAMES.REFRESH_TOKEN, tokens.refreshToken, {
+    maxAge: config.REFRESH_TOKEN_MAX_AGE,
+    httpOnly: true,
+    path: "api/auth",
+  });
 
-    return res.sendStatus(StatusCodes.OK);
-  } catch (error) {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error);
-  }
+  return res.sendStatus(StatusCodes.OK);
 };
 
 export default {
