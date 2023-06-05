@@ -7,6 +7,7 @@ export interface IPigeonBackendProcessEnv {
   MONGODB_HOST: string | undefined;
   MONGODB_PORT: string | undefined;
   MONGODB_DATABASE: string | undefined;
+  NODE_ENV: string | undefined;
 }
 
 declare global {

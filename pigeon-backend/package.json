@@ -30,9 +30,11 @@
     "http-status-codes": "^2.2.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.0",
+    "morgan": "^1.10.0",
     "parse-duration": "^1.0.3",
     "rimraf": "^5.0.0",
-    "ua-parser-js": "^1.0.35"
+    "ua-parser-js": "^1.0.35",
+    "winston": "^3.9.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -41,6 +43,7 @@
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/jsonwebtoken": "^9.0.2",
+    "@types/morgan": "^1.9.4",
     "@types/node": "^18.11.9",
     "@types/ua-parser-js": "^0.7.36",
     "@typescript-eslint/eslint-plugin": "^5.59.2",

@@ -1,5 +1,4 @@
 import "dotenv/config";
-import process from "process";
 import { handelError } from "./utils/errors.util";
 import startServer from "./server";
 

@@ -1,5 +1,6 @@
 import { Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import logger from "./logger.util";
 
 export class BackendError extends Error {
   statusCode: number;
@@ -11,8 +12,11 @@ export class BackendError extends Error {
 }
 
 export const handelError = (error: Error | BackendError, res?: Response) => {
-  // eslint-disable-next-line no-console
-  console.error(error);
+  if (error instanceof BackendError && error.statusCode < 500) {
+    logger.warn(error);
+  } else {
+    logger.error(error);
+  }
 
   if (res) {
     if (error instanceof BackendError) {
