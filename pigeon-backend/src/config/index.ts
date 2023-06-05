@@ -41,6 +41,7 @@ const getConfig = () => {
     REFRESH_TOKEN_MAX_AGE: parseDuration(requiredProcessEnv.JWT_REFRESH_EXPIRES),
     SESSION_EXPIRE_AFTER_SECONDS: parseDuration(requiredProcessEnv.JWT_REFRESH_EXPIRES, "second"),
     MONGODB_CONNECTION_STRING: `mongodb://${requiredProcessEnv.MONGODB_HOST}:${requiredProcessEnv.MONGODB_PORT}/${requiredProcessEnv.MONGODB_DATABASE}`,
+    NODE_ENV: requiredProcessEnv.NODE_ENV,
   };
 };
 
