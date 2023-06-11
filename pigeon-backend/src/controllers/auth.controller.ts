@@ -3,11 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import authService from "../services/auth.service";
 import config from "../config";
 import { COOKIE_NAMES, Cookie } from "../constants/cookie.constant";
-
-interface SignInBody {
-  email: string;
-  password: string;
-}
+import { SignInBody, SignUpBody } from "../validations/auth.validation";
 
 const signIn = async (req: Request<unknown, unknown, SignInBody, unknown>, res: Response) => {
   const { email, password } = req.body;
@@ -24,11 +20,6 @@ const signIn = async (req: Request<unknown, unknown, SignInBody, unknown>, res: 
 
   return res.sendStatus(StatusCodes.OK);
 };
-
-interface SignUpBody {
-  email: string;
-  password: string;
-}
 
 const signUp = async (req: Request<unknown, unknown, SignUpBody, unknown>, res: Response) => {
   const { email, password } = req.body;

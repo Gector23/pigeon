@@ -21,16 +21,15 @@ module.exports = {
   root: true,
   rules: {
     quotes: ["error", "double"],
-    "import/extensions": [
-      "error",
-      {
-        ts: "never",
-      },
-    ],
+    "import/extensions": ["error", { ts: "never" }],
     "implicit-arrow-linebreak": "off",
     "max-len": "off",
     "object-curly-newline": "off",
     "no-underscore-dangle": "off",
     "consistent-return": "off",
+    indent: "off",
+    "max-classes-per-file": "off",
+    "operator-linebreak": "off",
+    "@typescript-eslint/no-misused-promises": ["error", { checksVoidReturn: false }],
   },
 };
